@@ -2,11 +2,11 @@
 HADOOP_DATA_DIR=/opt/bigdata/hadoop3/data
 case $NODE_TYPE in
 "namenode")
-	echo "Starting NameNode..."
-	if [ ! -d "$HADOOP_DATA_DIR/namenode" ]; then
+	if [ ! -d "$HADOOP_DATA_DIR/namenode" ] || [ -z "$(ls -A $HADOOP_DATA_DIR/namenode)" ]; then
 		echo "Formatting NameNode..."
 		hdfs namenode -format
 	fi
+	echo "Starting NameNode..."
 	hdfs namenode
 	;;
 
