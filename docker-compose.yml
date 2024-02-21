@@ -17,7 +17,7 @@ services:
       volumes:
         - ./data/mysql/data:/var/lib/mysql
         - ./data/mysql/log:/var/log/mysql
-        - ./data/mysql/conf:/etc/mysql
+        - ./data/mysql/conf:/etc/mysql/conf.d
    node01:
       image: hadoop3-jdk8:1.0.1
       hostname: node01
