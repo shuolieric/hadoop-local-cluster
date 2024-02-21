@@ -1,0 +1,58 @@
+version: "3.8"
+services:
+   mysql:
+      image: mysql:latest
+      hostname: mysql
+      container_name: mysql
+      restart: always
+      healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-uroot", "-p${MYSQL_PASSWORD}"]
+        interval: 10s
+        timeout: 5s
+        retries: 6
+      ports:
+        - 3306:3306
+      environment:
+        - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+   node01:
+      image: hadoop3-jdk8:1.0.1
+      hostname: node01
+      container_name: node01
+      ports:
+        - 9870:9870
+      environment:
+        - NODE_TYPE=namenode
+      entrypoint: ["/entrypoint.sh"]
+   node02:
+      image: hadoop3-jdk8:1.0.1
+      hostname: node02
+      container_name: node02
+      environment:
+        - NODE_TYPE=datanode
+      entrypoint: ["/entrypoint.sh"]
+   node03:
+      image: hadoop3-jdk8:1.0.1
+      hostname: node03
+      container_name: node03
+      environment:
+        - NODE_TYPE=datanode
+      entrypoint: ["/entrypoint.sh"]
+   hive-metastore:
+      image: hive-hadoop3:1.0.1
+      hostname: hive-metastore
+      container_name: hive-metastore
+      restart: always
+      ports:
+        - 9083:9083
+      environment:
+        - NODE_TYPE=metastore
+      depends_on:
+        mysql:
+         condition: service_healthy
+      entrypoint: ["/entrypoint.sh"]
+
+   spark:
+      image: spark-hadoop3:1.0.1
+      hostname: spark
+      container_name: spark
+      entrypoint: ['/entrypoint.sh']
