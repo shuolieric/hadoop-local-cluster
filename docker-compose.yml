@@ -46,7 +46,7 @@ services:
       environment:
         - NODE_TYPE=datanode
       volumes:
-        - ./data/datanode02:/opt/bigdata/hadoop3/data/datanode
+        - ./data/datanode03:/opt/bigdata/hadoop3/data/datanode
       entrypoint: ["/entrypoint.sh"]
    hive-metastore:
       image: hive-hadoop3:1.0.2
