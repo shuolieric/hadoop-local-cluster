@@ -1,11 +1,11 @@
-FROM hadoop3-jdk8:1.0.1
+FROM hadoop3-jdk8:1.0.3
 
 LABEL maintainer="async.me@outlook.com"
 
 ADD lib/apache-hive-3.1.3-bin.tar.gz /usr/local/hive
 
-ENV HIVE_HOME /usr/local/hive/apache-hive-3.1.3-bin
-ENV PATH $HIVE_HOME/bin:$PATH
+ENV HIVE_HOME=/usr/local/hive/apache-hive-3.1.3-bin
+ENV PATH=$HIVE_HOME/bin:$PATH
 
 COPY config/hive-site.xml $HIVE_HOME/conf/hive-site.xml
 COPY lib/mysql-connector-j-8.3.0.jar $HIVE_HOME/lib/

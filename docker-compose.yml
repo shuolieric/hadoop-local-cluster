@@ -19,7 +19,7 @@ services:
         - ./data/mysql/log:/var/log/mysql
         - ./data/mysql/conf:/etc/mysql/conf.d
    node01:
-      image: hadoop3-jdk8:1.0.2
+      image: hadoop3-jdk8:1.0.3
       hostname: node01
       container_name: node01
       ports:
@@ -31,7 +31,7 @@ services:
         - ./data/namenode:/opt/bigdata/hadoop3/data/namenode
       entrypoint: ["/entrypoint.sh"]
    node02:
-      image: hadoop3-jdk8:1.0.2
+      image: hadoop3-jdk8:1.0.3
       hostname: node02
       container_name: node02
       environment:
@@ -40,7 +40,7 @@ services:
         - ./data/datanode02:/opt/bigdata/hadoop3/data/datanode
       entrypoint: ["/entrypoint.sh"]
    node03:
-      image: hadoop3-jdk8:1.0.2
+      image: hadoop3-jdk8:1.0.3
       hostname: node03
       container_name: node03
       environment:
@@ -49,7 +49,7 @@ services:
         - ./data/datanode03:/opt/bigdata/hadoop3/data/datanode
       entrypoint: ["/entrypoint.sh"]
    hive-metastore:
-      image: hive-hadoop3:1.0.2
+      image: hive-hadoop3:1.0.3
       hostname: hive-metastore
       container_name: hive-metastore
       restart: always
@@ -62,8 +62,8 @@ services:
          condition: service_healthy
       entrypoint: ["/entrypoint.sh"]
 
-   spark:
-      image: spark-hadoop3:1.0.2
-      hostname: spark
-      container_name: spark
+   client:
+      image: client-hadoop3:1.0.3
+      hostname: client
+      container_name: client
       entrypoint: ['/entrypoint.sh']

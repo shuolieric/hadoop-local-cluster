@@ -11,11 +11,11 @@ RUN mkdir -p /opt/bigdata/hadoop3/data
 ADD lib/jdk-8u401-linux-aarch64.tar.gz /usr/local/jdk
 ADD lib/hadoop-3.3.6-aarch64.tar.gz /usr/local/hadoop
 
-ENV JAVA_HOME /usr/local/jdk/jdk1.8.0_401
-ENV PATH $JAVA_HOME/bin:$PATH
+ENV JAVA_HOME=/usr/local/jdk/jdk1.8.0_401
+ENV PATH=$JAVA_HOME/bin:$PATH
 
-ENV HADOOP_HOME /usr/local/hadoop/hadoop-3.3.6
-ENV PATH $HADOOP_HOME/bin:$PATH
+ENV HADOOP_HOME=/usr/local/hadoop/hadoop-3.3.6
+ENV PATH=$HADOOP_HOME/bin:$PATH
 
 COPY config/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
 COPY config/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
