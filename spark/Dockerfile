@@ -12,6 +12,6 @@ COPY config/hdfs-site.xml $SPARK_HOME/conf/hdfs-site.xml
 COPY config/mapred-site.xml $SPARK_HOME/conf/mapred-site.xml
 COPY config/yarn-site.xml $SPARK_HOME/conf/yarn-site.xml
 COPY config/hive-site.xml $SPARK_HOME/conf/hive-site.xml
-COPY lib/mysql-connector-j-8.3.0.jar $SPARK_HOME/lib/
+COPY lib/mysql-connector-j-8.3.0.jar $SPARK_HOME/jars/
 COPY shell/entrypoint.sh /entrypoint.sh
 RUN chmod u+x /entrypoint.sh
