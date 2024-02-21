@@ -1,4 +1,4 @@
-FROM hadoop3-jdk8:1.0.3
+FROM hadoop3-jdk8:1.0.5
 
 LABEL maintainer="async.me@outlook.com"
 
@@ -9,5 +9,5 @@ ENV PATH=$HIVE_HOME/bin:$PATH
 
 COPY config/hive-site.xml $HIVE_HOME/conf/hive-site.xml
 COPY lib/mysql-connector-j-8.3.0.jar $HIVE_HOME/lib/
-COPY shell/entrypoint.sh /entrypoint.sh
+COPY module/hive/shell/entrypoint.sh /entrypoint.sh
 RUN chmod u+x /entrypoint.sh

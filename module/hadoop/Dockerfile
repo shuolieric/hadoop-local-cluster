@@ -4,6 +4,7 @@ LABEL maintainer="async.me@outlook.com"
 
 RUN apt-get update \
     && apt-get install -y vim \
+    && apt-get install -y netcat \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /opt/bigdata/hadoop3/data
@@ -21,5 +22,5 @@ COPY config/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
 COPY config/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 COPY config/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
 COPY config/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
-COPY shell/entrypoint.sh /entrypoint.sh
+COPY module/hadoop/shell/entrypoint.sh /entrypoint.sh
 RUN chmod u+x /entrypoint.sh

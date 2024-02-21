@@ -1,18 +1,24 @@
 #!/bin/bash
 HADOOP_DATA_DIR=/opt/bigdata/hadoop3/data
 case $NODE_TYPE in
-"namenode")
+"master")
 	if [ ! -d "$HADOOP_DATA_DIR/namenode" ] || [ -z "$(ls -A $HADOOP_DATA_DIR/namenode)" ]; then
 		echo "Formatting NameNode..."
 		hdfs namenode -format
 	fi
 	echo "Starting NameNode..."
-	hdfs namenode
+	hdfs namenode &
+	echo "Starting resourcemanager"
+	yarn resourcemanager &
+	echo "Starting yarn web prox"
+	yarn proxyserver
 	;;
 
-"datanode")
+"worker")
 	echo "Starting DataNode..."
-	hdfs datanode
+	hdfs datanode &
+	echo "Starting nodemanager"
+	yarn nodemanager
 	;;
 *)
 	echo "No specific Hadoop role defined for NODE_TYPE=$NODE_TYPE"
