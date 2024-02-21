@@ -14,14 +14,21 @@ services:
         - 3306:3306
       environment:
         - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+      volumes:
+        - ./data/mysql/data:/var/lib/mysql
+        - ./data/mysql/log:/var/log/mysql
+        - ./data/mysql/conf:/etc/mysql
    node01:
       image: hadoop3-jdk8:1.0.1
       hostname: node01
       container_name: node01
       ports:
-        - 9870:9870
+        - 9870:9870 # hdfs web ui
+        - 8020:8020 # namenode rpc
       environment:
         - NODE_TYPE=namenode
+      volumes:
+        - ./data/namenode:/opt/bigdata/hadoop3/data/namenode
       entrypoint: ["/entrypoint.sh"]
    node02:
       image: hadoop3-jdk8:1.0.1
@@ -29,6 +36,8 @@ services:
       container_name: node02
       environment:
         - NODE_TYPE=datanode
+      volumes:
+        - ./data/datanode02:/opt/bigdata/hadoop3/data/datanode
       entrypoint: ["/entrypoint.sh"]
    node03:
       image: hadoop3-jdk8:1.0.1
@@ -36,6 +45,8 @@ services:
       container_name: node03
       environment:
         - NODE_TYPE=datanode
+      volumes:
+        - ./data/datanode02:/opt/bigdata/hadoop3/data/datanode
       entrypoint: ["/entrypoint.sh"]
    hive-metastore:
       image: hive-hadoop3:1.0.1
