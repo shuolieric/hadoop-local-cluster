@@ -18,9 +18,9 @@ ENV PATH=$JAVA_HOME/bin:$PATH
 ENV HADOOP_HOME=/usr/local/hadoop/hadoop-3.3.6
 ENV PATH=$HADOOP_HOME/bin:$PATH
 
-COPY config/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
-COPY config/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
-COPY config/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
-COPY config/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
+COPY config/hadoop/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
+COPY config/hadoop/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+COPY config/hadoop/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
+COPY config/hadoop/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
 COPY module/hadoop/shell/entrypoint.sh /entrypoint.sh
 RUN chmod u+x /entrypoint.sh
