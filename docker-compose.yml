@@ -73,4 +73,6 @@ services:
       environment:
         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       entrypoint: ['/entrypoint.sh']
-
+networks:
+  default:
+     name: hadoop
