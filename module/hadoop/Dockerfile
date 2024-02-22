@@ -5,6 +5,8 @@ LABEL maintainer="async.me@outlook.com"
 RUN apt-get update \
     && apt-get install -y vim \
     && apt-get install -y netcat \
+    && apt-get install -y inetutils-ping \
+    && apt-get install -y telnet \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /opt/bigdata/hadoop3/data
