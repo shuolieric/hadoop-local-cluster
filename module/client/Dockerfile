@@ -1,4 +1,4 @@
-FROM hive-hadoop3:1.0.6
+FROM hive-hadoop3:1.0.7
 
 LABEL maintainer="async.me@outlook.com"
 

@@ -9,9 +9,7 @@ case $NODE_TYPE in
 	echo "Starting NameNode..."
 	hdfs namenode &
 	echo "Starting resourcemanager"
-	yarn resourcemanager &
-	echo "Starting yarn web prox"
-	yarn proxyserver
+	yarn resourcemanager
 	;;
 
 "worker")

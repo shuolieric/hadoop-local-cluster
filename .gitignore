@@ -2,3 +2,4 @@
 /data/*
 lib/
 config/cluster-env.sh
+.DS_Store
