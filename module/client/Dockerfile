@@ -5,7 +5,7 @@ LABEL maintainer="async.me@outlook.com"
 RUN mkdir /home/data
 
 ADD lib/spark-3.5.0-bin-hadoop3.tgz /usr/local/spark
-ADD lib/flink-1.16.3-bin-scala_2.12.tgz /usr/local/flink
+ADD lib/flink-1.17.2-bin-scala_2.12.tgz /usr/local/flink
 
 # for flink to use hadoop
 RUN echo 'export HADOOP_CLASSPATH=$(hadoop classpath)' >> /etc/profile
@@ -14,7 +14,7 @@ RUN echo 'export HADOOP_CLASSPATH=$(hadoop classpath)' >> /etc/bash.bashrc
 ENV SPARK_HOME=/usr/local/spark/spark-3.5.0-bin-hadoop3
 ENV PATH=$SPARK_HOME/bin:$PATH
 
-ENV FLINK_HOME=/usr/local/flink/flink-1.16.3
+ENV FLINK_HOME=/usr/local/flink/flink-1.17.2
 ENV PATH=$FLINK_HOME/bin:$PATH
 
 # for hive client
