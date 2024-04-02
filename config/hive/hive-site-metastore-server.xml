@@ -21,7 +21,7 @@
   <!-- Hive Execution Parameters -->
   <property>
     <name>javax.jdo.option.ConnectionURL</name>
-    <value>jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true</value>
+    <value>jdbc:mysql://mysql:3306/hive?characterEncoding=UTF-8&amp;createDatabaseIfNotExist=true</value>
   </property>
   <property>
     <name>javax.jdo.option.ConnectionDriverName</name>
@@ -42,5 +42,13 @@
   <property>
     <name>metastore.thrift.port</name>
     <value>9083</value>
+  </property>
+  <property>
+    <name>hive.server2.thrift.bind.host</name>
+    <value>hive</value>
+  </property>
+  <property>
+    <name>hive.server2.thrift.port</name>
+    <value>10000</value>
   </property>
 </configuration>

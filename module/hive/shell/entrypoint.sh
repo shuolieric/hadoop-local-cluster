@@ -7,7 +7,8 @@ if [ ! -d $HIVE_METASTORE_DATA_DIR ] || [ -z "$(ls -A $HIVE_METASTORE_DATA_DIR)"
 	touch $HIVE_METASTORE_DATA_DIR/flagfile
 fi
 echo "Starting metastore service..."
-hive --service metastore
-
+hive --service metastore &
+echo "Starting hiveserver2"
+hive --service hiveserver2
 # 保持容器运行
 tail -f /dev/null
