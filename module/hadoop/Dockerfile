@@ -15,12 +15,17 @@ RUN mkdir -p /opt/bigdata/zookeeper/data
 ADD lib/jdk-8u401-linux-aarch64.tar.gz /usr/local/jdk
 ADD lib/hadoop-3.3.6-aarch64.tar.gz /usr/local/hadoop
 ADD lib/apache-zookeeper-3.8.3-bin.tar.gz /usr/local/zookeeper
+ADD lib/hbase-2.5.8-hadoop3-bin.tar.gz /usr/local/hbase
 
 ENV JAVA_HOME=/usr/local/jdk/jdk1.8.0_401
 ENV PATH=$JAVA_HOME/bin:$PATH
 
 ENV HADOOP_HOME=/usr/local/hadoop/hadoop-3.3.6
 ENV PATH=$HADOOP_HOME/bin:$PATH
+ENV PATH=$HADOOP_HOME/sbin:$PATH
+
+ENV HBASE_HOME=/usr/local/hbase/hbase-2.5.8-hadoop3
+ENV PATH=$HBASE_HOME/bin:$PATH
 
 ENV ZOOKEEPER_HOME=/usr/local/zookeeper/apache-zookeeper-3.8.3-bin
 ENV PATH=$ZOOKEEPER_HOME/bin:$PATH
@@ -29,6 +34,12 @@ COPY config/hadoop/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
 COPY config/hadoop/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 COPY config/hadoop/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
 COPY config/hadoop/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
+
+COPY config/hbase/hbase-site.xml $HBASE_HOME/conf/hbase-site.xml
+COPY config/hbase/regionservers $HBASE_HOME/conf/regionservers
+COPY config/hbase/hbase-env.sh $HBASE_HOME/conf/hbase-env.sh
+
 COPY config/zookeeper/zoo.cfg /$ZOOKEEPER_HOME/conf/zoo.cfg
+
 COPY module/hadoop/shell/entrypoint.sh /entrypoint.sh
 RUN chmod u+x /entrypoint.sh

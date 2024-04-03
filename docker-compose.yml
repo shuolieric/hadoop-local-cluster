@@ -19,7 +19,7 @@ services:
         - ./data/mysql/log:/var/log/mysql
         - ./data/mysql/conf:/etc/mysql/conf.d
    node01:
-      image: hadoop3-jdk8:1.0.9
+      image: hadoop3-jdk8:1.0.10
       hostname: node01
       container_name: node01
       healthcheck:
@@ -33,6 +33,7 @@ services:
         - 8088:8088 # yarn webui
         - 8032:8032 # resourcemanager rpc
         - 2181:2181 # zookeeper rpc
+        - 16010:16010 # hbase webui
       environment:
         - NODE_TYPE=master
         - myid=1
@@ -41,7 +42,7 @@ services:
         - ./data/node01/zookeeper:/opt/bigdata/zookeeper/data/
       entrypoint: ["/entrypoint.sh"]
    node02:
-      image: hadoop3-jdk8:1.0.9
+      image: hadoop3-jdk8:1.0.10
       hostname: node02
       container_name: node02
       ports:
@@ -54,7 +55,7 @@ services:
         - ./data/node02/zookeeper:/opt/bigdata/zookeeper/data/
       entrypoint: ["/entrypoint.sh"]
    node03:
-      image: hadoop3-jdk8:1.0.9
+      image: hadoop3-jdk8:1.0.10
       hostname: node03
       container_name: node03
       ports:
@@ -67,7 +68,7 @@ services:
         - ./data/node03/zookeeper:/opt/bigdata/zookeeper/data/
       entrypoint: ["/entrypoint.sh"]
    hive:
-      image: hive-hadoop3:1.0.9
+      image: hive-hadoop3:1.0.10
       hostname: hive
       container_name: hive
       restart: always
@@ -83,14 +84,14 @@ services:
          condition: service_healthy
       entrypoint: ["/entrypoint.sh"]
    client:
-      image: client-hadoop3:1.0.9
+      image: client-hadoop3:1.0.10
       hostname: client
       container_name: client
       environment:
         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       entrypoint: ['/entrypoint.sh']
    broker01:
-      image: kafka-jdk17:1.0.9
+      image: kafka-jdk17:1.0.10
       hostname: broker01
       container_name: broker01
       ports:
@@ -104,7 +105,7 @@ services:
          condition: service_healthy
       entrypoint: ['/entrypoint.sh']
    broker02:
-      image: kafka-jdk17:1.0.9
+      image: kafka-jdk17:1.0.10
       hostname: broker02
       container_name: broker02
       ports:
@@ -118,7 +119,7 @@ services:
          condition: service_healthy
       entrypoint: ['/entrypoint.sh']
    broker03:
-      image: kafka-jdk17:1.0.9
+      image: kafka-jdk17:1.0.10
       hostname: broker03
       container_name: broker03
       ports:

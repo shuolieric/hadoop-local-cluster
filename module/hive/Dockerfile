@@ -1,4 +1,4 @@
-FROM hadoop3-jdk8:1.0.9
+FROM hadoop3-jdk8:1.0.10
 
 LABEL maintainer="async.me@outlook.com"
 
