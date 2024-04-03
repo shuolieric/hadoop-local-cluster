@@ -7,16 +7,24 @@ case $NODE_TYPE in
 		hdfs namenode -format
 	fi
 	echo "Starting NameNode..."
-	hdfs namenode &
+	hdfs --daemon start namenode
 	echo "Starting resourcemanager"
-	yarn resourcemanager
+	yarn --daemon start resourcemanager
+	echo "touch myid ${myid}"
+	echo ${myid} >/opt/bigdata/zookeeper/data/myid
+	echo "start zkServer"
+	zkServer.sh start
 	;;
 
 "worker")
 	echo "Starting DataNode..."
-	hdfs datanode &
+	hdfs --daemon start datanode
 	echo "Starting nodemanager"
-	yarn nodemanager
+	yarn --daemon start nodemanager
+	echo "touch myid ${myid}"
+	echo ${myid} >/opt/bigdata/zookeeper/data/myid
+	echo "start zkServer"
+	zkServer.sh start
 	;;
 *)
 	echo "No specific Hadoop role defined for NODE_TYPE=$NODE_TYPE"
