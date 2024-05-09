@@ -1,14 +1,15 @@
 #!/bin/bash
 source config/cluster-env.sh
 ACTION=$1
+CLUSTER=$2
 case "$ACTION" in
 'start')
 	echo "cluster start"
-	docker-compose up -d
+	docker-compose -f $CLUSTER-docker-compose.yml up -d
 	;;
 'stop')
 	echo "cluster stop"
-	docker-compose down
+	docker-compose -f $CLUSTER-docker-compose.yml down
 	;;
 *)
 	echo "wrong action"

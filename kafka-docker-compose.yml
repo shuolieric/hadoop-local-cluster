@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+   broker01:
+      image: kafka-jdk17:1.0.10
+      hostname: broker01
+      container_name: broker01
+      ports:
+        - 9092:9092
+      environment:
+        - NODE_TYPE=broker01
+      volumes:
+        - ./data/broker01/kafka:/opt/bigdata/kafka/data/
+      entrypoint: ['/entrypoint.sh']
+      networks:
+          - hadoop-local-cluster_hadoop
+   broker02:
+      image: kafka-jdk17:1.0.10
+      hostname: broker02
+      container_name: broker02
+      ports:
+        - 9093:9092
+      environment:
+        - NODE_TYPE=broker02
+      volumes:
+        - ./data/broker02/kafka:/opt/bigdata/kafka/data/
+      entrypoint: ['/entrypoint.sh']
+      networks:
+          - hadoop-local-cluster_hadoop
+   broker03:
+      image: kafka-jdk17:1.0.10
+      hostname: broker03
+      container_name: broker03
+      ports:
+        - 9094:9092
+      environment:
+        - NODE_TYPE=broker03
+      volumes:
+        - ./data/broker03/kafka:/opt/bigdata/kafka/data/
+      entrypoint: ['/entrypoint.sh']
+      networks:
+          - hadoop-local-cluster_hadoop
+networks:
+  hadoop-local-cluster_hadoop:
+    external: true
