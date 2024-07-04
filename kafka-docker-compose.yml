@@ -12,7 +12,7 @@ services:
         - ./data/broker01/kafka:/opt/bigdata/kafka/data/
       entrypoint: ['/entrypoint.sh']
       networks:
-          - hadoop-local-cluster_hadoop
+          - hadoop
    broker02:
       image: kafka-jdk17:1.0.10
       hostname: broker02
@@ -25,7 +25,7 @@ services:
         - ./data/broker02/kafka:/opt/bigdata/kafka/data/
       entrypoint: ['/entrypoint.sh']
       networks:
-          - hadoop-local-cluster_hadoop
+          - hadoop
    broker03:
       image: kafka-jdk17:1.0.10
       hostname: broker03
@@ -38,7 +38,7 @@ services:
         - ./data/broker03/kafka:/opt/bigdata/kafka/data/
       entrypoint: ['/entrypoint.sh']
       networks:
-          - hadoop-local-cluster_hadoop
+          - hadoop
 networks:
-  hadoop-local-cluster_hadoop:
+  hadoop:
     external: true

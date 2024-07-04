@@ -21,7 +21,7 @@ services:
         - ./data/mysql/conf:/etc/mysql/conf.d
         - ./data/mysql/my.cnf:/etc/my.cnf
       networks:
-          - hadoop
+          - default
    node01:
       image: hadoop3-jdk8:1.0.10
       hostname: node01
@@ -46,7 +46,7 @@ services:
         - ./data/node01/zookeeper:/opt/bigdata/zookeeper/data/
       entrypoint: ["/entrypoint.sh"]
       networks:
-          - hadoop
+          - default
    node02:
       image: hadoop3-jdk8:1.0.10
       hostname: node02
@@ -61,7 +61,7 @@ services:
         - ./data/node02/zookeeper:/opt/bigdata/zookeeper/data/
       entrypoint: ["/entrypoint.sh"]
       networks:
-          - hadoop
+          - default
    node03:
       image: hadoop3-jdk8:1.0.10
       hostname: node03
@@ -76,7 +76,7 @@ services:
         - ./data/node03/zookeeper:/opt/bigdata/zookeeper/data/
       entrypoint: ["/entrypoint.sh"]
       networks:
-          - hadoop
+          - default
    hive:
       image: hive-hadoop3:1.0.10
       hostname: hive
@@ -94,7 +94,7 @@ services:
          condition: service_healthy
       entrypoint: ["/entrypoint.sh"]
       networks:
-          - hadoop
+          - default
    client:
       image: client-hadoop3:1.0.10
       hostname: client
@@ -103,7 +103,8 @@ services:
         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       entrypoint: ['/entrypoint.sh']
       networks:
-          - hadoop
+          - default
 networks:
-  hadoop:
+  default:
+    name: hadoop
     driver: bridge
